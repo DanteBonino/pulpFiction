@@ -122,3 +122,13 @@ nivelDeRespetoDeActividad(maton, 1).
 nivelDeRespetoDeActividad(capo, 20).
 
 %Entiendo que en el 6 me piden la lista, si no con esRespetable alcanzaría.
+
+%Punto 7:
+hartoDe(Personaje, OtroPersonaje):-
+    encargo(_,Personaje,_),
+    personaje(OtroPersonaje,_),
+    forall(encargo(_,Personaje,ActividadDeEncargo), tieneQueInteractuarCon(ActividadDeEncargo, OtroPersonaje)).
+
+tieneQueInteractuarCon(cuidar(OtroPersonaje), OtroPersonaje).
+tieneQueInteractuarCon(ayudar(OtroPersonaje), OtroPersonaje).
+tieneQueInteractuarCon(buscar(OtroPersonaje,_), OtroPersonaje).
