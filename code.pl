@@ -102,3 +102,23 @@ cantidadEncargos(Personaje, Cantidad):-
     length(Encargos, Cantidad).
 
 %Se puede hacer con un not también.
+
+%Punto 6:
+personajesRespetables(PersonajesRespetables):-
+    findall(Personaje, esRespetable(Personaje), PersonajesRespetables).
+
+esRespetable(Personaje):-
+    personaje(Personaje, Actividad),
+    nivelDeRespetoDeActividad(Actividad, NivelDeRespeto),
+    NivelDeRespeto > 9.
+
+nivelDeRespetoDeActividad(actriz(Peliculas),NivelDeRespeto):-
+    length(Peliculas,CantidadDePeliculas),
+    NivelDeRespeto is CantidadDePeliculas / 10.
+nivelDeRespetoDeActividad(mafioso(Rol), NivelDeRespeto):-
+    nivelDeRespetoDeActividad(Rol, NivelDeRespeto).
+nivelDeRespetoDeActividad(resuelveProblemas, 10).
+nivelDeRespetoDeActividad(maton, 1).
+nivelDeRespetoDeActividad(capo, 20).
+
+%Entiendo que en el 6 me piden la lista, si no con esRespetable alcanzaría.
