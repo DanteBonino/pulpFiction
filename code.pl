@@ -127,8 +127,16 @@ nivelDeRespetoDeActividad(capo, 20).
 hartoDe(Personaje, OtroPersonaje):-
     encargo(_,Personaje,_),
     personaje(OtroPersonaje,_),
-    forall(encargo(_,Personaje,ActividadDeEncargo), tieneQueInteractuarCon(ActividadDeEncargo, OtroPersonaje)).
+    forall(encargo(_,Personaje,ActividadDeEncargo), tieneQueInteractuarConPersonaOAmigoDe(ActividadDeEncargo, OtroPersonaje)).
 
-tieneQueInteractuarCon(cuidar(OtroPersonaje), OtroPersonaje).
-tieneQueInteractuarCon(ayudar(OtroPersonaje), OtroPersonaje).
-tieneQueInteractuarCon(buscar(OtroPersonaje,_), OtroPersonaje).
+tieneQueInteractuarConPersonaOAmigoDe(Actividad, OtroPersonaje):-
+    personaConLaQueSeInteractua(Actividad, Participante),
+    esLaPersonaOAmigoDe(Participante, OtroPersonaje).
+
+personaConLaQueSeInteractua(cuidar(Persona), Persona).
+personaConLaQueSeInteractua(ayudar(Persona), Persona).
+personaConLaQueSeInteractua(buscar(Persona,_), Persona).
+
+esLaPersonaOAmigoDe(Persona, Persona).
+esLaPersonaOAmigoDe(UnaPersona, OtraPersona):-
+    algunoEsAmigo(UnaPersona, OtraPersona).
