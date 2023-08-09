@@ -90,3 +90,15 @@ personaCercana(Persona, PersonaCercana):-
     algunoEsAmigo(Persona, PersonaCercana).
 personaCercana(Persona, PersonaCercana):-
     trabajaPara(Persona, PersonaCercana).
+
+%Punto 5
+masAtareado(Personaje):-
+    cantidadEncargos(Personaje, CantidadEncargos),
+    forall(cantidadEncargos(_, UnaCantidadDeEncargos), CantidadEncargos >= UnaCantidadDeEncargos).
+
+cantidadEncargos(Personaje, Cantidad):-
+    personaje(Personaje,_),
+    findall(Encargo, encargo(_,Personaje,Encargo), Encargos),
+    length(Encargos, Cantidad).
+
+%Se puede hacer con un not también.
