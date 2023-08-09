@@ -140,3 +140,22 @@ personaConLaQueSeInteractua(buscar(Persona,_), Persona).
 esLaPersonaOAmigoDe(Persona, Persona).
 esLaPersonaOAmigoDe(UnaPersona, OtraPersona):-
     algunoEsAmigo(UnaPersona, OtraPersona).
+
+%Punto 8
+duoDiferenciable(Personaje,OtroPersonaje):-
+    duo(Personaje, OtroPersonaje),
+    algunoTieneAlgunaCaracteristicaQueElOtroNo(Personaje, OtroPersonaje).
+
+algunoTieneAlgunaCaracteristicaQueElOtroNo(Personaje, OtroPersonaje):-
+    tieneCaracteristicaQueElOtroNo(Personaje, OtroPersonaje).
+algunoTieneAlgunaCaracteristicaQueElOtroNo(Personaje, OtroPersonaje):-
+    tieneCaracteristicaQueElOtroNo(OtroPersonaje,Personaje).
+
+tieneCaracteristicaQueElOtroNo(Personaje, OtroPersonaje):-
+    tieneCaracteristica(Personaje, Caracteristica),
+    not(tieneCaracteristica(OtroPersonaje, Caracteristica)).
+
+
+tieneCaracteristica(Personaje, Caracteristica):-
+    caracteristicas(Personaje,Caracteristicas),
+    member(Caracteristica, Caracteristicas).
